@@ -54,9 +54,7 @@ async function initDataFiles() {
       );
     }
 
-    try {
-      await fs.access(SCENARIOS_FILE);
-    } catch {// ===================== КЕЙС 1 =====================
+     {// ===================== КЕЙС 1 =====================
       const scenario1 = {
         id: 1,
         name: "Разработка корпоративного сайта",
