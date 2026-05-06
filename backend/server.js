@@ -10,19 +10,16 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-  origin: 'https://okuym1.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+// Открываем CORS для всех доменов, чтобы ошибки больше не было
+app.use(cors());
+
 app.use(express.json());
 app.use(express.static("public"));
+
 const DATA_DIR = path.join(__dirname, "data");
 const USERS_FILE = path.join(DATA_DIR, "users.json");
 const SCENARIOS_FILE = path.join(DATA_DIR, "scenarios.json");
 const SIMULATIONS_FILE = path.join(DATA_DIR, "simulations.json");
-
 async function initDataFiles() {
   try {
     await fs.mkdir(DATA_DIR, { recursive: true });
